@@ -1,0 +1,50 @@
+extends ../index
+
+block body
+
+    script.
+        $(function(){
+            $("#btn_insert").click(function(){
+                //- alert("추가버튼 클릭")
+                let name = $("#BName").val()
+                $.get("/book/name",{name:name},function(result){
+                    if(result) {
+                        let retName = result.BName
+                        alert(retName + "\n" + name)
+                        if(name == retName) {
+                            alert("이미 등록된 도서 입니다.")
+                            return false
+                        }
+                    }
+                    $("form").submit()
+                })
+            })
+            $("#btn_delete").click(function(){
+                let id = $(this).data('id')
+                if(confirm("삭제할까요?")){
+                    document.location.replace("/book/delete/"+id)
+                }
+            })
+            $("#btn_list").click(function(){
+                document.location.replace("/book")
+            })
+        })
+
+    form(method='POST')
+        - var inputClasses = ['w3-input','w3-border']
+        .w3-container
+            input#BName(name='BName',type='text',class=inputClasses,placeholder='이름',value=book.BName)
+        .w3-container
+            input#BWriter(name='BWriter',type='text',class=inputClasses,placeholder='저자',value=book.BWriter)
+        .w3-container
+            input#BComp(name='BComp',type='text',class=inputClasses,placeholder='출판사',value=book.BComp)
+        .w3-container
+            input#BYear(name='BYear',type='text',class=inputClasses,placeholder='출판연도',value=book.BYear)
+        .w3-container
+            input#BPrice(name='BPrice',type='text',class=inputClasses,placeholder='가격',value=book.BPrice)
+        
+        - var btnClasses = ['w3-button','w3-blue','w3-right','w3-margin-right']
+
+        button#btn_list(type='button',class=btnClasses).w3-green 목록으로
+        button#btn_delete(type='button',class=btnClasses,data-id=book._id).w3-red 삭제
+        button#btn_insert(type='button',class=btnClasses)= btnText
