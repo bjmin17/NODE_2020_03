@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        $(function(){
+            $(".table_body").click(function(){
+                let id = $(this).data("id")
+                document.location.href="/book/update/"+id
+            })
+        })
+    </script>
+</head>
+<body>
+    <header class="w3-container w3-teal w3-margin w3-center">
+        <h2>도서정보 목록</h2>
+    </header>
+    <section class="w3-container w3-margin">
+        <table border="1" class="w3-table w3-stripped w3-hoverable w3-border">
+
+            <tr>
+                <th>이름</th>
+                <th>저자</th>
+                <th>회사</th>
+                <th>가격</th>
+                <th>!</th>
+            </tr>
+
+
+            <% books.forEach(function(book){ %>
+                <tr class="table_body" data-id="<%- book._id %> ">
+                    <td>
+                        <a href="/book/update/<%- book._id %>">
+                            <%- book.bTitle %>
+                        </a>
+                    </td>
+                    <td><%- book.bWriter %></td>
+                    <td><%- book.bComp %></td>
+                    <td><%- book.bPrice %></td>
+                    <td><a href="/book/delete/<%- book._id %>">삭제</a></td>
+                </tr>
+            <% }) %>
+        </table>
+    </section>
+    <button class="w3-button w3-blue w3-right"><a href="/book/insert">도서추가</a></button>
+</body>
+</html>
