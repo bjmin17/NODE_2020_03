@@ -7,4 +7,11 @@ var str = username && username.login && username.userid
 let n1 = 0
 let n2 = 0
 // n1이 1로 true가 되면서 뒤에 조건은 건너 뛰기 때문에 n1은 1, n2는 0
-let sum = ++n1 >0 || ++n2 > 0? n1, n2
+// let sum = ++n1 >0 || ++n2 > 0? n1, n2
+
+
+
+// userId값이 있나 없나 검사할때
+function userIdCheck(userId) {
+    userId = userId || 'id없음'
+}
