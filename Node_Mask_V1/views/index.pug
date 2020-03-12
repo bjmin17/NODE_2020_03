@@ -56,11 +56,15 @@ block content
         th 위도
         th 경도
         th 재고상태
+      - var remain = {'plenty':'충분(100개이상)','some':'보통(~30개)','few':'부족(~2)','empty':'없음','':'상태모름'}
       each market,index in stores
         tr
           td= market.name
-          td= market.add
+          td= market.addr
           td= market.lng
           td= market.lat
-          td= market.remain_stat
+          if market.remain_stat
+            td= remain[market.remain_stat]
+          else
+            td 상태모름
 
