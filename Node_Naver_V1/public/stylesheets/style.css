@@ -1,0 +1,50 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  
+}
+
+div.movie-list{
+  background-color: rgba(21, 41, 219, 0.836);
+}
+
+a {
+  color: #00B7FF;
+}
+
+h3{
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+div.flex{
+  
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+}
+
+div.w3-row{
+  
+  background-color: white;
+  width: 300px;
+  margin: 5px;
+}
+
+div.w3-card-4.w3-col p:nth-child(1) {
+  height: 60px;
+  font-size: 30px;
+  text-align: center;
+  color: white  ;
+  
+}  
+div.w3-card-4.w3-col p:nth-child(1) a{
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+  

@@ -1,0 +1,66 @@
+extends layout
+
+block content
+  script(src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appkey=" + tmap_api)
+  script.
+    $(function(){
+      // 마커를 찍기 위한 위,경도 데이터를 배열로 잡기
+      // router에서 보낸 데이터를
+      // pug 파일의 js코드에서 캐치하기(문자열로 받은 값을 JSONObject로 바꾸기 위한 작업)
+
+      let marketList = !{JSON.stringify(stores)}
+
+      // 검색한 데이터의 가장 마지막 데이터의 좌표
+      let initLat = marketList[marketList.length - 1].lat
+      let initLng = marketList[marketList.length - 1].lng
+
+      let marker = {}
+
+      var map = new Tmapv2.Map("map_div",
+        {
+          width:'90%',
+          height:'500px',
+          center: new Tmapv2.LatLng(initLat,initLng),
+          zoom:15
+        })
+        map.addListener('click',function(e){
+          var lnglat = e.latLng
+          marker = new Tmapv2.Marker({
+            position : new Tmapv2.LatLng(lnglat.lat(),lnglat.lng()),
+            draggable:true,
+            map : map,
+          })
+        })
+        // 마커 찍기
+            // 위의 map을 다시 한번 주입.
+        marketList.forEach(function(market,index){
+          marker[index] = new Tmapv2.Marker({
+            position : new Tmapv2.LatLng(market.lat,market.lng),
+            map : map,
+            title : market.name  + "<br>" + "마스크 남은 양 : " + market.remain_stat + "<br>" + market.addr
+          })
+        })
+    })
+  h1 마스크 구매처 검색 시스템 V1
+  style.
+    #map_div {
+      margin:20px auto;
+    }
+  div#map_div.container-fluid
+
+  div.market_list.container-fluid
+    table.w3-table.w3-table-all
+      tr 
+        th 이름
+        th 주소
+        th 위도
+        th 경도
+        th 재고상태
+      each market,index in stores
+        tr
+          td= market.name
+          td= market.add
+          td= market.lng
+          td= market.lat
+          td= market.remain_stat
+

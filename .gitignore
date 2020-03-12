@@ -64,6 +64,8 @@ RemoteSystemsTempFiles/
 dataGoKr.*
 myData.go.kr.key.js
 naver_secret.js
+tmap_sec.*
+naver_secret.*
 dbconfig.js
 seoul_config.js
 
