@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+    style.
+        .elipsis {
+            width : 250px;
+            white-space : nowrap;
+            overflow : hidden;
+            text-overflow : ellipsis;
+        }
+    div.movie-list
+        h3 검색 결과
+        div.flex
+            each movie,index in movies
+                div.w3-row
+                    div.w3-card-4.w3-col
+                        p.w3-container.w3-blue
+                            // HTML 코드에 보이는 주석
+                            //- HTML 코드에 보이지 않는 주석
+                            //- !{} : html tag가 포함된 문자열을 tag를 반영하면,
+                            a(href=movie.link) !{movie.title}
+                        p.w3-container
+                            img(src=movie.image)
+                        p.w3-container.elipsis= movie.subtitle
+                        p.w3-container= movie.pubDate
+                        p.w3-container= movie.director
+                        p.w3-container= movie.actor
+                        p.w3-container= movie.userRating

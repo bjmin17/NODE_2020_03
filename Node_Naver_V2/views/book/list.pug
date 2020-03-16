@@ -1,0 +1,30 @@
+extends ../layout
+
+block content
+    div.book-list
+        h3 검색 결과
+        div
+            table.w3-table-all
+                tr
+                    th 이미지
+                    th 제목
+                    th 저자
+                    th 가격
+                    th 출판사
+                    th ISBN
+                    th 설명
+                    th 출판일
+                each book,index in books            
+                    tr 
+                        td
+                            img(src=book.image)
+                            
+                        td !{book.title}
+                        td= book.author
+                        td= book.price
+                        td= book.publisher
+                        td= book.isbn
+                        td= book.description
+                        td= book.pubdate
+
+        
