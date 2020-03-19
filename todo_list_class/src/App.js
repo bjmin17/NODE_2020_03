@@ -71,6 +71,10 @@ class App extends Component {
   };
 
   handleToggle = id => {
+    // 여기부터
+    // this : 화살표 함수로 되어있는 이벤트 핸들러는
+    //    this가 바로 현재 컴포넌트다
+    //    this = App.js 의 context(문맥, thread의 모든 정보를 담고 있는 것)
     const { todoList } = this.state;
 
     // id 매개변수 변수에 담겨 있는 값이
