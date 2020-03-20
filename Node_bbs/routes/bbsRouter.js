@@ -15,7 +15,7 @@ var corsOption = {
 require("moment-timezone");
 moment.tz.setDefault("Asia/Seoul");
 
-router.get("/", cors(corsOption), (req, res) => {
+router.get("/", (req, res) => {
   /*
   cors 모듈 없이 CORS 정책을 허용하기 위한 설정
   모든 router에 공통으로 설정을 해야 한다.
@@ -28,7 +28,7 @@ router.get("/", cors(corsOption), (req, res) => {
   });
 });
 
-router.post("/insert", cors(corsOption), (req, res) => {
+router.post("/", (req, res) => {
   req.body.b_date = moment().format("YYYY[-]MM[-]DD");
   req.body.b_time = moment().format("HH:mm:ss");
 
@@ -38,4 +38,24 @@ router.post("/insert", cors(corsOption), (req, res) => {
   });
 });
 
+router.put("/", (req, res) => {
+  console.log(req.body);
+
+  bbsVO
+    .update({ _id: req.body._id }, { $set: req.body })
+    .exec((err, result) => {
+      res.json(result);
+    });
+});
+
+router.delete("/", (req, res) => {
+  console.log("delete 메서드 바디 값 : ", req.body);
+  bbsVO.deleteOne({ _id: req.body._id }).exec((err, data) => {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(data);
+    }
+  });
+});
 module.exports = router;

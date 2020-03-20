@@ -24,7 +24,6 @@ var usersRouter = require("./routes/users");
 var bbsRouter = require("./routes/bbsRouter");
 
 var app = express();
-
 app.use(cors());
 
 // view engine setup
