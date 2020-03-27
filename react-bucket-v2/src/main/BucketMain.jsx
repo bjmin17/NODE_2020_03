@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import BucketInsert from "./BucketInsert";
 import BucketList from "./BucketList";
+import BucketContext from "../provider/BucketProvider";
 
 class BucketMain extends Component {
   id = 0;
@@ -161,12 +162,10 @@ class BucketMain extends Component {
   render() {
     return (
       <div>
-        <BucketInsert bucket_add={this.bucket_add} />
-        <BucketList
-          bucket_update={this.bucket_update}
-          bucketList={this.state.bucketList}
-          changeFlag={this.changeFlag}
-        />
+        <BucketContext.Provider value={this.state}>
+          <BucketInsert />
+          <BucketList />
+        </BucketContext.Provider>
       </div>
     );
   }
