@@ -15,7 +15,8 @@ const BucketProvider = createContext({
   // 하위 컴포넌트에서 전달받아 사용할 handler method
   changeFlag: id => {},
   bucket_add: b_title => {},
-  bucket_update: (id, b_title) => {}
+  bucket_update: (id, b_title) => {},
+  bucket_complete: (id, b_end_date) => {}
 });
 
 export default BucketProvider;

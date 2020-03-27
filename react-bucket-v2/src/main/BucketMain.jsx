@@ -18,7 +18,11 @@ class BucketMain extends Component {
         b_end_check: false,
         b_cancle: false
       }
-    ]
+    ],
+    changeFlag: id => this.changeFlag(id),
+    bucket_update: (id, b_title) => this.bucket_update(id, b_title),
+    bucket_add: b_title => this.bucket_add(b_title),
+    bucket_complete: (id, b_end_date) => this.bucket_complete(id, b_end_date)
   };
 
   // componentWillMount는 앞으로(17 이후) 사용 불가능
@@ -140,6 +144,30 @@ class BucketMain extends Component {
             { ...bucket, b_title: b_title }
           : bucket
       )
+    });
+  };
+
+  // 완료선택이 이루어지면 bucketList를 map으로 반복하면서
+  // id 값과 일치하는 항목을 찾고
+  // 있으면 해당 항목을 변경하는 작업 수행
+  bucket_complete = (id, b_end_date) => {
+    // alert(id + ":완료:" + b_end_date);
+    const { bucketList } = this.state;
+
+    this.setState({
+      bucketList: bucketList.map(bucket => {
+        // id 값과 일치하는 리스트가 있느냐?
+        if (bucket.b_id === id) {
+          const date = new Date();
+          // 현재 항목의 b_end_date 값이 없느냐?
+          // 없으면 새로만든 date 값을 사용하고
+          // 있으면 값을 지우는 ""으로 사용하겠다
+          const end_date = bucket.b_end_date === "" ? date : "";
+          return { ...bucket, b_end_date: end_date };
+        } else {
+          return bucket;
+        }
+      })
     });
   };
 
