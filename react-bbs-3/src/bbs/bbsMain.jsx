@@ -18,7 +18,7 @@ class bbsMain extends Component {
         this.setState({
           bbsList: result,
         });
-      }) // return 된 res.json() 값을 처리하는 부분
+      }) // return 된 res.json() 값을 처리
       .catch((error) => {
         console.log(error);
       }); // 오류가 발생했을 때 처리
@@ -26,14 +26,12 @@ class bbsMain extends Component {
 
   render() {
     /* 
-    state 변수값을 간편하게 자식 컴포넌트에게 
-    전달하기 위해서 비구조화를 먼저 실행한다.
+    state 변수값을 간편하게 자식 컴포넌트에게
+    전달하기 위해 비 구조화를 실행
     */
     const { bbsList } = this.state;
-
     return (
       <div>
-        <h3>BBS Main</h3>
         <BBsList bbsList={bbsList} />
       </div>
     );
@@ -42,10 +40,10 @@ class bbsMain extends Component {
   componentWillMount() {}
 
   /*
-  현재 BBsMain 컴포넌트가 렌더링 되어 화면에 그려질 때
-  호출되는 method로
-  여기에서 서버로부터 데이터를 가져오는 
-  fetchBbsList를 실행한다.
+  현재 BBsMain 컴포넌트가 랜더링 되어 화면에
+  그려질때 호출되는 method로
+  여기에서 서버로 부터 데이터를 가져오는 
+  fechBbsList를 실행한다.
   */
   componentDidMount() {
     this.fetchBbsList();
@@ -54,8 +52,8 @@ class bbsMain extends Component {
   componentWillReceiveProps(nextProps) {}
 
   /*
-  LifeCycle method를 통해서
-  어떤 일을 실행하려고 할 때
+  LifeCycle method를 통해서 
+  어떤 일을 실행하려고 할때
   return true를 실행해주자
   */
   shouldComponentUpdate(nextProps, nextState) {
