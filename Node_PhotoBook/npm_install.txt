@@ -1,0 +1,15 @@
+yarn add cookie-parser
+yarn add debug
+yarn add express
+yarn add body-parser
+yarn add http-errors
+yarn add pug
+yarn add morgan
+yarn add request
+yarn add express-paginate
+
+yarn add mongoose
+yarn add multer
+
+yarn install
+ 
